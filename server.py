@@ -2,22 +2,26 @@
 # -*- coding: UTF-8 -*-
 
 import socket
+import os
+import sys
 
-
-TCP_IP = '127.0.0.1'
-TCP_PORT = 5005
-BUFFER_SIZE = 20  # Normally 1024, but we want fast response
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind((TCP_IP, TCP_PORT))
-s.listen(1)
-
-while 1:
-	conn, addr = s.accept()
-	print 'Endereço de conexão:', addr
-	while 1:
-		data = conn.recv(BUFFER_SIZE)
-		if not data: break
-		print "Mensagem recebida:", data
-		conn.send(data)  # echo
-	conn.close()
+HOST = ''				# Endereco IP do Servidor
+PORT = 5000				# Porta que o Servidor esta
+tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+tcp.bind((HOST, PORT))
+tcp.listen(1)
+while True:
+	con, cliente = tcp.accept()
+	pid = os.fork()
+	if pid == 0:
+		tcp.close()
+		print 'Conectado por', cliente
+		while True:
+			msg = con.recv(1024)
+			if not msg: break
+			print cliente, msg
+		print 'Finalizando conexao do cliente', cliente
+		con.close()
+		sys.exit(0)
+	else:
+		con.close()
