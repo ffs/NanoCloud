@@ -1,0 +1,54 @@
+UNIVERSIDADE FEDERAL DO PARANÁ
+	
+BACHARELADO EM CIÊNCIA DA COMPUTAÇÃO
+	
+TRABALHO PRÁTICO REDES DE COMPUTADORES II
+
+FELLIPE FREITAS DA SILVEIRA GRR20101789
+	
+RODRIGO TOLEDO M DUMONT GRR2010
+
+	
+Nosso trabalho prático foi implementado em linguagem Python, da seguinte forma:
+
+	
+==== COMO EXECUTAR ====
+	
+	Os programas devem ser executados necessariamente na ordem em que são apresentados abaixo:
+
+	1 (Servidor de Processamento) 	Para executar o Servidor de Processamento é necessário digitar ./servidor sem nenhum parâmetro.
+
+	2 (Portal) 			Para executar o Portal é necessário digitar ./portal {parâmetro}
+						
+						a) Onde o parâmetro pode assumir o valor 1 ou 2
+
+							i)   Ao executar o Portal com o parâmetro 1, ele deve executar no modo de escalonamento Aleatório.
+							ii)  Ao executar o Portal com o parâmetro 2, ele deve executar no modo de escalonamento Round Robin.
+							iii) Ao executar o Portal com um parâmetro diferente de 1 ou 2, o programa será finalizado.
+
+	3 (Cliente)			Para executar o Cliente é necessário digitar ./cliente {parâmetro}
+						
+						a) Onde o parâmetro deverá corresponder ao nome de um arquivo fonte Python (exemplo.py), caso contrário o programa será 						finalizado.
+
+
+==== EXECUÇÃO ESPERADA ====
+	
+	Após a executar o programa Cliente, o mesmo se conectará no Portal e iniciará a primeira transferência do arquivo fonte do Cliente para o Portal. O portal criará um arquivo texto temporário (portal_in.txt) a fim de armazenar o arquivo fonte original do Cliente.
+
+	Após a primeira transferência, o Portal iniciará uma conexão com um dos Servidores escalonados. Neste momento iniciará a segunda transferência do arquivo fonte original, desta vez a transferência será do Portal para o Servidor. O Servidor também criará um arquivo texto temporário (server_in.txt) a fim de armazenar o arquivo fonte original do Cliente.
+
+	O Servidor por sua vez, após receber o arquivo fonte do Portal, executará o mesmo utilizando o interpretador Python. Toda a saída da execução será depositada em uma variável cmdOutput, seja o resultado correto ou então um erro de sintaxe da linguagem Python. Esta variável cmdOutput será escrita pelo Servidor em um arquivo texto temporário (program_output.txt).
+
+	Assim que o Servidor finalizar a escrita da saída em um arquivo texto, o mesmo enviará este arquivo para o Portal, pela mesma conexão aberta anteriormente.
+
+	Para receber o arquivo resposta o Portal também o armazenará em um arquivo texto temporário (program_output2.txt), após receber o arquivo o Portal enviará o mesmo para o Cliente
+	pela mesma conexão aberta anteriormente.
+
+	O Cliente receberá o arquivo resposta, armazenando-o em um arquivo texto temporário (cliente_in.txt), após o recebimento imprimirá o conteúdo deste arquivo.
+
+
+	
+
+	
+
+	
